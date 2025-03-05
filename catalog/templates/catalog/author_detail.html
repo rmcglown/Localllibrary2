@@ -1,0 +1,22 @@
+{% extends "catalog/base.html" %}
+{% block content %}
+    <h1>{{ author.last_name }}, {{ author.first_name }}</h1>{{ author.date_of_birth }}, {{ author.date_of_death }}
+    <h2>Books:</h2>
+    <ul>
+<div>
+    {% if author.author_image %}
+        <img src="{{ author.author_image.url }}">
+    {% endif %}
+    </div>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Books</h4>
+
+        {% for book in author.book_set.all %}
+        <li><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></li>
+        {% endfor %}
+  <td><a href="{% url 'author_list' %}" class="btn btn-primary">Author List</a></td>
+  </div>
+    </ul>
+{% endblock %}
+
